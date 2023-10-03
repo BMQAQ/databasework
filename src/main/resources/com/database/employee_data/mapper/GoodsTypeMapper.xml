@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.database.employee_data.mapper.GoodsTypeMapper">
+
+    <select id="list1" resultType="com.database.employee_data.pojo.type">
+        SELECT typeid,typename
+        FROM shop_database.dbo.type
+        <where>
+            <if test="typeid !=null">
+                typeid  LIKE '%' + #{typeid} + '%'
+            </if>
+            <if test="typename!=null">
+                AND typename LIKE '%' + #{typename} + '%'
+            </if>
+        </where>
+
+    </select>
+</mapper>

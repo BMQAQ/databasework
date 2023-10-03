@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.database.employee_data.mapper.EmployeeMapper">
+
+    <select id="list1" resultType="com.database.employee_data.pojo.employee">
+        SELECT *
+        FROM shop_database.dbo.employee
+        <where>
+            <if test="name != null">
+                Ename LIKE '%' + #{name} + '%'
+            </if>
+            <if test="sex != null">
+                AND Esex = #{sex}
+            </if>
+            <if test="Eno != null">
+                AND Eno LIKE '%' + #{Eno} + '%';
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.database.employee_data.mapper.GoodsMapper">
+
+    <select id="list1" resultType="com.database.employee_data.pojo.goods">
+        SELECT Goods_id, Goods_name, Purchase_price, Sale_price, keepdate, Tunit,typeid
+        FROM shop_database.dbo.goods
+        <where>
+            <if test="goodsId !=null">
+                goods_id LIKE '%' + #{goodsId} + '%'
+            </if>
+            <if test="goodsName!=null">
+                AND goods_name LIKE '%' + #{goodsName} + '%'
+            </if>
+        </where>
+
+    </select>
+</mapper>

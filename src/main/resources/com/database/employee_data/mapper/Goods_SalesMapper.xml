@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.database.employee_data.mapper.Goods_SalesMapper">
+
+    <select id="list1" resultType="com.database.employee_data.pojo.goods_sales">
+        SELECT saleid,goodsid,Wno,salenum,SOtime,Eno
+        FROM shop_database.dbo.sale
+        <where>
+            <if test="saleid !=null">
+                saleid LIKE '%' + #{saleid} + '%'
+            </if>
+            <if test="goodsid!=null">
+                AND goodsid LIKE '%' + #{goodsid} + '%'
+            </if>
+            <if test="wno!=null">
+                AND Wno LIKE '%' + #{wno} + '%'
+            </if>
+            <if test="begin!=null and end!=null">
+                AND SOtime between #{begin} and #{end}
+            </if>
+        </where>
+
+    </select>
+</mapper>

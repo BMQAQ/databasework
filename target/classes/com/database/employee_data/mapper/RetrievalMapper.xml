@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.database.employee_data.mapper.RetrievalMapper">
+
+    <select id="list1" resultType="com.database.employee_data.pojo.retrieval">
+        SELECT retrievalid,goodsid,Wno,retrievalnum,retrievaltime,Eno
+        FROM shop_database.dbo.retrieval
+        <where>
+            <if test="retrievalid !=null">
+                retrievalid LIKE '%' + #{retrievalid} + '%'
+            </if>
+            <if test="goods_id!=null">
+                AND goodsid LIKE '%' +#{goods_id} + '%';
+            </if>
+        </where>
+
+    </select>
+</mapper>

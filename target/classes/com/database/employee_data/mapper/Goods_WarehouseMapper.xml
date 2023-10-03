@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.database.employee_data.mapper.Goods_WarehouseMapper">
+
+    <select id="list1" resultType="com.database.employee_data.pojo.goods_warehouse">
+        SELECT goods_id,Wno,Wsave
+        FROM shop_database.dbo.goods_warehouse
+        <where>
+            <if test="goods_id !=null">
+                goods_id LIKE '%' + #{goods_id} + '%'
+            </if>
+            <if test="Wno!=null">
+                AND Wno LIKE '%' +#{Wno} + '%';
+            </if>
+        </where>
+
+    </select>
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.database.employee_data.mapper.StorageMapper">
+
+    <select id="list1" resultType="com.database.employee_data.pojo.storage">
+        SELECT storageid,goodsid,Wno,storagenum,storagetime,Eno
+        FROM shop_database.dbo.storage
+        <where>
+            <if test="storageid !=null">
+                storageid LIKE '%' + #{storageid} + '%'
+            </if>
+            <if test="goods_id!=null">
+                AND goodsid LIKE '%' +#{goods_id} + '%';
+            </if>
+        </where>
+
+    </select>
+</mapper>
